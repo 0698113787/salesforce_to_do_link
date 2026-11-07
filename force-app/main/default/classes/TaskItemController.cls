@@ -7,7 +7,16 @@ public with sharing class TaskItemController {
                 ORDER BY Due_Date__c ASC];
     }
 
-    // ADD TASK method goes below (Developer 1)
+    @AuraEnabled
+    public static void addTask(String name, Date dueDate, String priority) {
+    Task_Item__c t = new Task_Item__c(
+        Name = name,
+        Due_Date__c = dueDate,
+        Priority__c = priority,
+        Status__c = 'Not Started'
+    );
+    insert t;
+    }// (Andile Developer 1 addtask method)
 
     // MARK DONE method goes below (Developer 2)
 
