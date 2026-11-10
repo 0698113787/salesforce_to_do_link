@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Task Tracker">
+
+        <!-- ADD FORM goes here (Developer 1) -->
+
+        <table class="slds-table slds-table_bordered">
+            <thead>
+                <tr><th>Name</th><th>Due</th><th>Priority</th><th>Status</th><th>Done</th><th>Delete</th></tr>
+            </thead>
+            <tbody>
+                <template for:each={tasks} for:item="task">
+                    <tr key={task.Id}>
+                        <td>{task.Name}</td>
+                        <td>{task.Due_Date__c}</td>
+                        <td>{task.Priority__c}</td>
+                        <td>{task.Status__c}</td>
+                        <td><!-- DONE BUTTON goes here (Developer 2) --></td>
+                        <td><!-- DELETE BUTTON goes here (Developer 3) --></td>
+                    </tr>
+                </template>
+            </tbody>
+        </table>
+    </lightning-card>
+</template>
