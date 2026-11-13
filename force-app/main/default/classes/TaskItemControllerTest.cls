@@ -38,4 +38,28 @@ private class TaskItemControllerTest {
         Assert.areEqual('Learn Apex', result.Name);
         Assert.areEqual(Date.today().addDays(7), result.Due_Date__c);
     }
+    @isTest
+    static void testMarkDone() {
+
+        // Arrange: create a task that is not done yet
+        Task_Item__c t = new Task_Item__c(
+            Name = 'Finish report',
+            Status__c = 'Not Started'
+        );
+        insert t;
+
+        // Act: mark it as done
+        Test.startTest();
+        TaskItemController.markDone(t.Id);
+        Test.stopTest();
+
+        // Assert: the status was changed to Done
+        Task_Item__c result = [
+            SELECT Id, Status__c
+            FROM Task_Item__c
+            WHERE Id = :t.Id
+        ];
+
+        Assert.areEqual('Done', result.Status__c);
+    }
 }
