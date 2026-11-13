@@ -24,12 +24,13 @@ private class TaskItemControllerTest {
         Test.startTest();
         TaskItemController.addTask(
             'Learn Apex',
-            Date.today().addDays(7)
+            Date.today().addDays(7),
+            'Not Started'
         );
         Test.stopTest();
 
         Task_Item__c result = [
-            SELECT Id, Name, Due_Date__c
+            SELECT Id, Name, Due_Date__c, Status__c
             FROM Task_Item__c
             WHERE Name = 'Learn Apex'
             LIMIT 1
@@ -37,6 +38,7 @@ private class TaskItemControllerTest {
 
         Assert.areEqual('Learn Apex', result.Name);
         Assert.areEqual(Date.today().addDays(7), result.Due_Date__c);
+        Assert.areEqual('Not Started', result.Status__c);
     }
     @isTest
     static void testMarkDone() {
