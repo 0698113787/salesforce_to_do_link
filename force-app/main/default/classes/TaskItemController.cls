@@ -8,11 +8,12 @@ public with sharing class TaskItemController {
 
     // ADD TASK method goes below (Developer 1)
     @AuraEnabled
-    public static void addTask(String name, Date dueDate) {
+    public static void addTask(String name, Date dueDate, String status) {
         
             Task_Item__c t = new Task_Item__c(
                 Name = name,
-                Due_Date__c = dueDate
+                Due_Date__c = dueDate,
+                Status__c = status
             );
             insert t;
         
