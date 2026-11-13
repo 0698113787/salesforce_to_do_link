@@ -26,5 +26,11 @@ public static void markDone(Id taskId) {
     update t;
 }
 
-    // DELETE TASK method goes below (Developer 3)
+    // DELETE TASK method goes below (Dev_Slindoh)
+    @AuraEnabled
+    public static void deleteTask(Id taskId) {
+        Task_Item__c t = new Task_Item__c(Id = taskId);
+        delete t;
+    }
+
 }

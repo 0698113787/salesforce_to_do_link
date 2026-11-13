@@ -64,4 +64,28 @@ private class TaskItemControllerTest {
 
         Assert.areEqual('Done', result.Status__c);
     }
+        // DELETE TASK TEST (Dev_Slindoh)
+    @isTest
+    static void testDeleteTask() {
+
+        // Arrange: Create a task
+        Task_Item__c t = new Task_Item__c(
+            Name = 'Delete this task'
+        );
+        insert t;
+
+        // Act: Delete the task
+        Test.startTest();
+        TaskItemController.deleteTask(t.Id);
+        Test.stopTest();
+
+        // Assert: Check that the task no longer exists
+        List<Task_Item__c> result = [
+            SELECT Id
+            FROM Task_Item__c
+            WHERE Id = :t.Id
+        ];
+
+        Assert.areEqual(0, result.size());
+    }
 }
